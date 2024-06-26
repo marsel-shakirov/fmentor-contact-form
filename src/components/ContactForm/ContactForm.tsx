@@ -1,31 +1,36 @@
 'use client';
-import { create } from '@/actions/actions';
-import React from 'react';
+
+import { useFormState } from 'react-dom';
+
+import { action, State } from '@/actions/actions';
+import { clsx } from 'clsx';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import SubmitButton from '../SubmitButton/SubmitButton';
 import styles from './contactForm.module.css';
 
 export default function ContactForm() {
-	const [isSupport, setSupport] = React.useState<boolean>(false);
-	const [isGeneral, setGeneral] = React.useState<boolean>(false);
-	const [message, setMessage] = React.useState<string>('');
+	const initialState: State = { message: null, errors: {} };
 
-	function handleSubmit() {
-		if (isGeneral || isSupport) {
-			setMessage('');
-		} else {
-			setMessage('Please select a query type');
-		}
-	}
+	const [state, formAction] = useFormState(action, initialState);
+
+	console.log(state);
+
 	return (
 		<div className={styles.root}>
 			<h1 className={styles.title}>Contact Us</h1>
-			<form action={create}>
+			<form action={formAction}>
 				<div className={styles.row}>
 					<div className={styles['wrapper']}>
 						<label className={styles['input-title']} htmlFor='name'>
 							First Name
 						</label>
-						<input className={styles.input} type='text' name='name' id='name' />
+						<input
+							className={clsx(styles.input, state.errors?.name && styles.error)}
+							type='text'
+							name='name'
+							id='name'
+						/>
+						<ErrorMessage message={state.errors?.name} />
 					</div>
 
 					<div className={styles['wrapper']}>
@@ -33,11 +38,17 @@ export default function ContactForm() {
 							Last Name
 						</label>
 						<input
-							className={styles.input}
+							className={clsx(
+								styles.input,
+								state.errors?.surname && styles.error
+							)}
 							type='text'
 							name='surname'
 							id='surname'
 						/>
+						{state.errors?.surname && (
+							<ErrorMessage message={state.errors?.surname} />
+						)}
 					</div>
 				</div>
 				<div className={styles['wrapper']}>
@@ -45,11 +56,12 @@ export default function ContactForm() {
 						Email Address
 					</label>
 					<input
-						className={styles.input}
+						className={clsx(styles.input, state.errors?.email && styles.error)}
 						type='email'
 						name='email'
 						id='email-address'
 					/>
+					<ErrorMessage message={state.errors?.email} />
 				</div>
 
 				<div className={styles['wrapper']}>
@@ -62,10 +74,6 @@ export default function ContactForm() {
 								type='checkbox'
 								name='general'
 								value='true'
-								checked={isGeneral}
-								onChange={() => {
-									setGeneral(!isGeneral);
-								}}
 							/>
 							<span className={styles.checkmark}></span>
 							General Enquiry
@@ -77,16 +85,12 @@ export default function ContactForm() {
 								type='checkbox'
 								name='support'
 								value='true'
-								checked={isSupport}
-								onChange={() => {
-									setSupport(!isSupport);
-								}}
 							/>
 							<span className={styles.checkmark}></span>
 							Support Request
 						</label>
 					</div>
-					<p className={styles.message}>{message}</p>
+					<ErrorMessage message={state.errors?.select} />
 				</div>
 
 				<div className={styles['wrapper']}>
@@ -94,10 +98,14 @@ export default function ContactForm() {
 						Message
 					</label>
 					<textarea
-						className={styles.textarea}
+						className={clsx(
+							styles.textarea,
+							state.errors?.textarea && styles.error
+						)}
 						name='textarea'
 						id='textarea'
 					></textarea>
+					<ErrorMessage message={state.errors?.textarea} />
 				</div>
 
 				<div className={styles.agree}>
@@ -112,8 +120,9 @@ export default function ContactForm() {
 						being contacted by the team
 					</label>
 				</div>
+				<ErrorMessage message={state.errors?.agree} />
 
-				<SubmitButton handleSubmit={handleSubmit} />
+				<SubmitButton />
 			</form>
 		</div>
 	);

@@ -1,6 +1,7 @@
 .root {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 	background-color: var(--white);
 	padding: 30px 24px 35px 24px;
 	border-radius: 13px;
@@ -30,6 +31,10 @@
 	color: rgba(51, 49, 51, 0.7);
 	border: 1.5px solid rgb(180, 180, 180);
 	cursor: pointer;
+}
+
+.error {
+	border: 1.5px solid var(--red);
 }
 
 .input:hover {
@@ -91,6 +96,7 @@
 	position: relative;
 	margin-top: 40px;
 	padding-left: 40px;
+	margin-bottom: 15px;
 }
 
 .checkbox-agree {
@@ -129,13 +135,12 @@
 	margin-top: 5px;
 }
 
-.message {
-	color: var(--red);
-}
-
-@media (min-width: 421px) {
+@media (min-width: 443px) {
 	.checkmark-agree {
 		transform: translateY(0);
+	}
+	.root {
+		width: 80vh;
 	}
 }
 

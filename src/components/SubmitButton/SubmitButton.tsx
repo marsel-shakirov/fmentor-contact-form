@@ -3,9 +3,7 @@ import React from 'react';
 import { useFormStatus } from 'react-dom';
 
 import styles from './submitButton.module.css';
-const SubmitButton: React.FC<{ handleSubmit: () => void }> = ({
-	handleSubmit,
-}) => {
+const SubmitButton: React.FC = () => {
 	const { pending } = useFormStatus();
 
 	return (
@@ -13,7 +11,6 @@ const SubmitButton: React.FC<{ handleSubmit: () => void }> = ({
 			className={`${styles.btn} ${styles.pointer}`}
 			type='submit'
 			disabled={pending}
-			onClick={() => handleSubmit()}
 		>
 			Submit
 		</button>
