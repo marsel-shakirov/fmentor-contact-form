@@ -15,8 +15,6 @@ export default function ContactForm() {
 
 	const [state, formAction] = useFormState(action, initialState);
 
-	console.log(state);
-
 	return (
 		<>
 			{state.message && <PopupSucсess />}

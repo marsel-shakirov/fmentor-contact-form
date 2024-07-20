@@ -17,6 +17,7 @@ const Textarea: React.FC<TypeErrorMessage> = ({ error }) => {
 		<>
 			<textarea
 				onFocus={handlerFocus}
+				spellCheck='false'
 				className={clsx('textarea', isError?.length && 'error')}
 				name='textarea'
 				id='textarea'
