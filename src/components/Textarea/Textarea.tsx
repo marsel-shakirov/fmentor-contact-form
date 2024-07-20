@@ -12,11 +12,12 @@ const Textarea: React.FC<TypeErrorMessage> = ({ error }) => {
 	const handlerFocus = () => {
 		setIsError([]);
 	};
+
 	return (
 		<>
 			<textarea
 				onFocus={handlerFocus}
-				className={clsx('textarea', error && 'error')}
+				className={clsx('textarea', isError?.length && 'error')}
 				name='textarea'
 				id='textarea'
 			></textarea>

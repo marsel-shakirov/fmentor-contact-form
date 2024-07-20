@@ -35,7 +35,7 @@ a {
 	flex-direction: column;
 	width: 100%;
 	background-color: var(--white);
-	padding: 30px 24px 35px 24px;
+	padding: 55px 24px 35px 24px;
 	border-radius: 13px;
 }
 
@@ -194,6 +194,33 @@ a {
 	background-color: var(--green-lighter);
 }
 
+.popup {
+	position: absolute;
+	top: 0px;
+	background-color: var(--grey-darker);
+	padding: 10px 15px;
+	border-radius: 12px;
+	width: 250px;
+	height: 90px;
+}
+.popup-wrap {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+	align-items: center;
+}
+.popup-title {
+	color: var(--white);
+	font-size: 17px;
+}
+.popup-desc {
+	color: var(--white);
+	opacity: 0.8;
+	margin-top: 12px;
+	font-size: 14px;
+	text-align: center;
+}
+
 @media (min-width: 443px) {
 	.checkmark-agree {
 		transform: translateY(0);
@@ -218,16 +245,40 @@ a {
 		flex-direction: row;
 		gap: 18px;
 	}
+	.textarea {
+		height: 104px;
+		padding: 15px;
+	}
+	.popup {
+		width: 402px;
+		height: 109px;
+
+		top: 23px;
+		padding: 30px 25px;
+	}
 }
 
 @media (min-width: 1024px) {
 	.root {
 		width: 60%;
 	}
+	.popup {
+		width: 450px;
+	}
 }
 
 @media (min-width: 1440px) {
 	.root {
-		width: 45%;
+		width: 740px;
+		height: 775px;
+	}
+	.btn {
+		margin-top: 25px;
+	}
+	.agree {
+		margin-top: 25px;
+	}
+	.wrapper {
+		margin-top: 23px;
 	}
 }

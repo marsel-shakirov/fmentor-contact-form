@@ -71,10 +71,6 @@ export async function action(
 		textarea: formData.get('textarea'),
 		agree: formData.get('agree'),
 	});
-	// console.log(formData);
-
-	console.log(validatedFields);
-	// console.log(validatedFields.error?.flatten().fieldErrors);
 
 	if (!validatedFields.success) {
 		return {
