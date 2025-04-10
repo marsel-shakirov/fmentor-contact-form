@@ -58,5 +58,4 @@ i'll want to learn more different react hooks and use them in my projects.
 
 ## Author
 
-- Frontend Mentor - [@JetMars](https://www.frontendmentor.io)
 - GitHub - [Github](https://github.com/marsel-shakirov)
